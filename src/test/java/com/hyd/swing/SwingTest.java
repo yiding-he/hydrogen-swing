@@ -1,8 +1,7 @@
 package com.hyd.swing;
 
+import javax.swing.*;
 import java.awt.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class SwingTest extends JFrame {
 
@@ -25,7 +24,7 @@ public class SwingTest extends JFrame {
             System.out.println(Swing.confirmWarning("Confirm", "You really want this?!"))));
 
         contentPane.add(button("alert internal info", () ->
-            Swing.alertInternalInfo(contentPane, "Alert Internal", "Something happened.")));
+            Swing.alertInternalInfo(this.getContentPane(), "Alert Internal", "Something happened.")));
     }
 
     private JButton button(String text, Runnable action) {
