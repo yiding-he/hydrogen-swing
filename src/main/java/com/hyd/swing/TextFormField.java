@@ -1,6 +1,6 @@
 package com.hyd.swing;
 
-import javax.swing.*;
+import javax.swing.JTextField;
 
 public class TextFormField extends FormField<String> {
 
@@ -8,14 +8,7 @@ public class TextFormField extends FormField<String> {
 
     public TextFormField(String labelText) {
         super(labelText);
-    }
-
-    @Override
-    protected void init() {
-        add(this.textField = new JTextField());
-        setTopOf(textField).spacing(Swing.SMALL_PADDING).toBottomOf(label);
-        setLeftOf(textField).spacing(0).toLeftOf(this);
-        setRightOf(textField).spacing(0).toRightOf(this);
+        add(this.textField = new JTextField(), "growx");
     }
 
     @Override

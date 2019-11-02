@@ -128,7 +128,7 @@ public class Swing {
     }
 
     public static void highlight(Component component) {
-        component.setBackground(Color.RED);
+        component.setBackground(new Color(174, 61, 41));
     }
 
     public static JPanel flowPanel(Component... components) {

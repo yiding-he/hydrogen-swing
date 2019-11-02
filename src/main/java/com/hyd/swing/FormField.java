@@ -1,21 +1,16 @@
 package com.hyd.swing;
 
-import javax.swing.*;
+import javax.swing.JLabel;
 
 public abstract class FormField<V> extends AbstractPanel {
 
     protected JLabel label;
 
     public FormField(String labelText) {
+        getLayout().setLayoutConstraints("flowy, nogrid, gapy 5, ins 2");
+        getLayout().setColumnConstraints("[grow]");
         add(this.label = new JLabel(labelText));
-
-        setLeftOf(label).spacing(0).toLeftOf(this);
-        setTopOf(label).spacing(0).toTopOf(this);
-
-        init();
     }
-
-    protected abstract void init();
 
     @Override
     public abstract void setEnabled(boolean enabled);
