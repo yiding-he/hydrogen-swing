@@ -1,6 +1,5 @@
 package com.hyd.swing;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
 import java.awt.*;
 import java.awt.Window.Type;
 import java.io.File;
@@ -33,14 +32,22 @@ public class Swing {
 
     }
 
-    public static void init() {
-        try {
-            UIManager.setLookAndFeel(new FlatDarculaLaf());
-        } catch (Exception e) {
-            System.err.println(e.toString());
+    public static void init(LookAndFeel lookAndFeel) {
+
+        if (lookAndFeel != null) {
+            try {
+                UIManager.setLookAndFeel(lookAndFeel);
+            } catch (Exception e) {
+                System.err.println(e.toString());
+            }
         }
 
-        desktopBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+    }
+
+    private static void initDesktopBounds() {
+        if (desktopBounds == null) {
+            desktopBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        }
     }
 
     public static void openMainWindow(JFrame frame, int width, int height) {
@@ -52,6 +59,8 @@ public class Swing {
     }
 
     public static void openWindow(JFrame frame, int width, int height, boolean exitOnClose) {
+        initDesktopBounds();
+
         int x = desktopBounds.x + (desktopBounds.width - width) / 2;
         int y = desktopBounds.y + (desktopBounds.height - height) / 2;
         frame.setSize(width, height);

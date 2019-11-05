@@ -1,5 +1,6 @@
 package com.hyd.swing;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.hyd.swing.form.*;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
@@ -7,7 +8,7 @@ import javax.swing.JFrame;
 public class FormTest2 extends JFrame {
 
     public static void main(String[] args) {
-        Swing.init();
+        Swing.init(new FlatDarculaLaf());
         Swing.openMainWindow(new FormTest2(), 500, 500);
     }
 

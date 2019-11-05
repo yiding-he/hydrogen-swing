@@ -1,12 +1,14 @@
 package com.hyd.swing;
 
-import javax.swing.*;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class SwingTest extends JFrame {
 
     public static void main(String[] args) {
-        Swing.init();
+        Swing.init(new FlatDarculaLaf());
         Swing.openMainWindow(new SwingTest(), 400, 300);
     }
 
