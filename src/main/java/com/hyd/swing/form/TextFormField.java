@@ -1,4 +1,4 @@
-package com.hyd.swing;
+package com.hyd.swing.form;
 
 import javax.swing.JTextField;
 
@@ -9,6 +9,10 @@ public class TextFormField extends FormField<String> {
     public TextFormField(String labelText) {
         super(labelText);
         add(this.textField = new JTextField(), "growx");
+    }
+
+    public JTextField getTextField() {
+        return textField;
     }
 
     @Override

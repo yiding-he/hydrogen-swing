@@ -127,8 +127,10 @@ public class Swing {
         return result;
     }
 
-    public static void highlight(Component component) {
-        component.setBackground(new Color(174, 61, 41));
+    public static void highlight(String color, Component... components) {
+        for (Component component : components) {
+            component.setBackground(Color.decode("0x" + color.substring(1)));
+        }
     }
 
     public static JPanel flowPanel(Component... components) {
