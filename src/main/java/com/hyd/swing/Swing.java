@@ -138,6 +138,9 @@ public class Swing {
 
     public static void highlight(String color, Component... components) {
         for (Component component : components) {
+            if (component instanceof JComponent) {
+                ((JComponent) component).setOpaque(true);
+            }
             component.setBackground(Color.decode("0x" + color.substring(1)));
         }
     }
