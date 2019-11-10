@@ -1,10 +1,11 @@
 package com.hyd.swing.layout;
 
 import com.hyd.swing.layout.SpringLayout2.ConstraintContext.PaddingContext;
-import java.awt.Component;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.SpringLayout;
 
 public class SpringLayout2 extends SpringLayout {
 
@@ -127,7 +128,7 @@ public class SpringLayout2 extends SpringLayout {
         }
     }
 
-    public void expand(Component container, int padding, Component component, Edge... edges) {
+    public void padding(Component container, int padding, Component component, Edge... edges) {
         for (Edge edge : edges) {
             int _padding = edge == Edge.BOTTOM || edge == Edge.RIGHT ? -padding : padding;
             putConstraint(edge.value, component, _padding, edge.value, container);

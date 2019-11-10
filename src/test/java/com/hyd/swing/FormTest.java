@@ -1,12 +1,14 @@
 package com.hyd.swing;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.hyd.swing.form.*;
-import java.awt.Container;
-import java.awt.HeadlessException;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import net.miginfocom.swing.MigLayout;
+import com.hyd.swing.form.FormPanel;
+import com.hyd.swing.form.PasswordFormField;
+import com.hyd.swing.form.TextFormField;
+import com.hyd.swing.layout.SpringLayout2.Edge;
+import com.hyd.swing.layout.SpringPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class FormTest extends JFrame {
 
@@ -33,9 +35,9 @@ public class FormTest extends JFrame {
     public FormTest() throws HeadlessException {
         setTitle("登录");
         LoginForm loginForm = new LoginForm();
-
-        Container container = getContentPane();
-        container.setLayout(new MigLayout("nogrid, fill"));
-        container.add(loginForm, "growx, wmax 260, center");
+        setContentPane(new SpringPanel() {{
+            add(loginForm);
+            getLayout().padding(this, 30, loginForm, Edge.TOP, Edge.RIGHT, Edge.BOTTOM, Edge.LEFT);
+        }});
     }
 }

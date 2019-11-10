@@ -1,16 +1,18 @@
 package com.hyd.swing.form;
 
-import com.hyd.swing.AbstractPanel;
-import javax.swing.JLabel;
-import net.miginfocom.layout.CC;
+import com.hyd.swing.layout.SpringLayout2.Edge;
+import com.hyd.swing.layout.SpringPanel;
 
-public abstract class FormField<V> extends AbstractPanel {
+import javax.swing.*;
+
+public abstract class FormField<V> extends SpringPanel {
 
     protected JLabel label;
 
     public FormField(String labelText) {
-        getLayoutConstraints().flowY().fillX().noGrid().gridGapY("5").insets("2");
-        addComponent(this.label = new JLabel(labelText), new CC());
+        add(this.label = new JLabel(labelText));
+        getLayout().align(Edge.LEFT, this, label);
+        getLayout().align(Edge.TOP, this, label);
     }
 
     protected boolean isGrow() {

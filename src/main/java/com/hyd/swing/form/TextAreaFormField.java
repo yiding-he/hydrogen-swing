@@ -1,8 +1,6 @@
 package com.hyd.swing.form;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import net.miginfocom.layout.CC;
+import javax.swing.*;
 
 public class TextAreaFormField extends FormField<String> {
 
@@ -10,10 +8,6 @@ public class TextAreaFormField extends FormField<String> {
 
     public TextAreaFormField(String labelText) {
         super(labelText);
-        this.addComponent(
-            new JScrollPane(this.textArea = new JTextArea()),
-            new CC().grow().minHeight("100")
-        );
     }
 
     @Override

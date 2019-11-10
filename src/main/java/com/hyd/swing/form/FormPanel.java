@@ -1,22 +1,27 @@
 package com.hyd.swing.form;
 
-import com.hyd.swing.AbstractPanel;
 import com.hyd.swing.Swing;
-import javax.swing.JButton;
-import net.miginfocom.layout.CC;
+import com.hyd.swing.layout.SpringLayout2.Edge;
+import com.hyd.swing.layout.SpringPanel;
 
-public abstract class FormPanel extends AbstractPanel {
+import javax.swing.*;
+
+public abstract class FormPanel extends SpringPanel {
 
     private FormButtonsPanel formButtonsPanel = new FormButtonsPanel();
 
     private FormFieldsPanel formFieldsPanel = new FormFieldsPanel();
 
-    private boolean haveButton;
-
     public FormPanel() {
-        getLayoutConstraints().noGrid().flowY().insets("0").fill();
-        addComponent(formFieldsPanel, new CC().grow());
-        Swing.highlight("#5555AA", formFieldsPanel);
+        add(formFieldsPanel);
+        // add(formButtonsPanel);
+
+        getLayout().align(Edge.TOP, this, formFieldsPanel);
+        getLayout().align(Edge.LEFT, this, formFieldsPanel);
+        getLayout().align(Edge.RIGHT, this, formFieldsPanel);
+
+        Swing.highlight("#882222", formFieldsPanel);
+        Swing.highlight("#AA8888", this);
     }
 
     public void addFormField(FormField<?> formField) {
@@ -24,12 +29,6 @@ public abstract class FormPanel extends AbstractPanel {
     }
 
     public void addButton(JButton button) {
-
-        if (!haveButton) {
-            addComponent(formButtonsPanel, new CC().growX().wrap());
-            haveButton = true;
-        }
-
-        formButtonsPanel.addButton(button);
+        // formButtonsPanel.addButton(button);
     }
 }

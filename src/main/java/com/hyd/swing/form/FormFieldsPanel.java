@@ -1,23 +1,31 @@
 package com.hyd.swing.form;
 
-import com.hyd.swing.AbstractPanel;
 import com.hyd.swing.Swing;
-import net.miginfocom.layout.CC;
+import com.hyd.swing.layout.SpringLayout2.Edge;
+import com.hyd.swing.layout.SpringPanel;
 
-public class FormFieldsPanel extends AbstractPanel {
+public class FormFieldsPanel extends SpringPanel {
+
+    private FormField<?> lastField;
 
     public FormFieldsPanel() {
-        getLayoutConstraints().flowY().noGrid().fillX().gridGapY("10").insets("0");
+
     }
 
     public void addFormField(FormField<?> formField) {
-        CC constraints = new CC().growX();
-        if (formField.isGrow()) {
-            System.out.println(formField.getClass() + " grows.");
-            constraints.growY();
+
+        add(formField);
+        getLayout().align(Edge.LEFT, this, formField);
+        getLayout().align(Edge.RIGHT, this, formField);
+
+        if (lastField == null) {
+            getLayout().align(Edge.TOP, this, formField);
+        } else {
+            getLayout().setTopOf(formField).padding(Swing.PADDING).toBottomOf(lastField);
         }
-        addComponent(formField, constraints);
-        Swing.highlight("#CC8888", formField);
+
+        lastField = formField;
+        getLayout().setBottomOf(this).padding(0).toBottomOf(lastField);
     }
 
 }

@@ -1,6 +1,9 @@
 package com.hyd.swing.form;
 
-import javax.swing.JTextField;
+import com.hyd.swing.Swing;
+import com.hyd.swing.layout.SpringLayout2.Edge;
+
+import javax.swing.*;
 
 public class TextFormField extends FormField<String> {
 
@@ -8,7 +11,11 @@ public class TextFormField extends FormField<String> {
 
     public TextFormField(String labelText) {
         super(labelText);
-        add(this.textField = new JTextField(), "growx");
+        add(this.textField = new JTextField());
+        getLayout().align(Edge.LEFT, this, textField);
+        getLayout().align(Edge.RIGHT, this, textField);
+        getLayout().setTopOf(textField).padding(Swing.SMALL_PADDING).toBottomOf(label);
+        getLayout().align(Edge.BOTTOM, textField, this);
     }
 
     public JTextField getTextField() {

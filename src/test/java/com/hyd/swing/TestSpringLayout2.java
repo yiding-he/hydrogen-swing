@@ -1,9 +1,11 @@
 package com.hyd.swing;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+import com.hyd.swing.layout.SpringLayout2.Edge;
 import com.hyd.swing.layout.SpringPanel;
-import java.awt.HeadlessException;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class TestSpringLayout2 extends JFrame {
 
@@ -13,24 +15,28 @@ public class TestSpringLayout2 extends JFrame {
     }
 
     public TestSpringLayout2() throws HeadlessException {
-        JLabel titleLabel, contentLabel;
-        JTextField titleField;
-        JScrollPane contentArea;
-        JPanel splitter;
 
-        SpringPanel root = new SpringPanel();
+        SpringPanel root = new SpringPanel() {{
+            JLabel label = new JLabel("AAAAAAAAAAA");
+            add(label);
+            getLayout().align(Edge.TOP, this, label);
+            getLayout().align(Edge.LEFT, this, label);
+
+            SpringPanel panel2 = new SpringPanel(){{
+                JLabel label2 = new JLabel("label2");
+                add(label2);
+                getLayout().align(Edge.LEFT, this, label2);
+                getLayout().setBottomOf(this).padding(0).toBottomOf(label2);
+                Swing.highlight("#000066", this);
+            }};
+
+            add(panel2);
+            getLayout().setTopOf(panel2).padding(10).toBottomOf(label);
+            getLayout().align(Edge.LEFT, this, panel2);
+            getLayout().align(Edge.RIGHT, this, panel2);
+            getLayout().align(Edge.BOTTOM, this, panel2);
+        }};
+
         setContentPane(root);
-
-        SpringPanel labelsPanel = new SpringPanel();
-        labelsPanel.add(titleLabel = new JLabel("文章标题："));
-        labelsPanel.add(contentLabel = new JLabel("内容："));
-
-        SpringPanel fieldsPanel = new SpringPanel();
-        fieldsPanel.add(titleField = new JTextField());
-        fieldsPanel.add(contentArea = new JScrollPane(new JTextArea()));
-        fieldsPanel.add(splitter = new JPanel());
-
-        root.add(labelsPanel);
-        root.add(fieldsPanel);
     }
 }
