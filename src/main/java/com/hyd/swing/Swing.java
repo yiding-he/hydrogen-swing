@@ -1,11 +1,27 @@
 package com.hyd.swing;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.Window.Type;
 import java.io.File;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.LookAndFeel;
+import javax.swing.SpringLayout;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -73,38 +89,6 @@ public class Swing {
         }
 
         frame.setVisible(true);
-    }
-
-    public static void alertInfo(String title, String message) {
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public static void alertInternalInfo(Component parent, String title, String message) {
-        JOptionPane.showInternalMessageDialog(parent, message, title, JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public static void alertWarning(String title, String message) {
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);
-    }
-
-    public static void alertError(String title, String message) {
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
-    }
-
-    public static boolean confirmInfo(String title, String message) {
-        int result = JOptionPane.showConfirmDialog(
-            null, message, title,
-            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE
-        );
-        return result == JOptionPane.YES_OPTION;
-    }
-
-    public static boolean confirmWarning(String title, String message) {
-        int result = JOptionPane.showConfirmDialog(
-            null, message, title,
-            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE
-        );
-        return result == JOptionPane.YES_OPTION;
     }
 
     public static String chooseDirectory(File startDir) {
