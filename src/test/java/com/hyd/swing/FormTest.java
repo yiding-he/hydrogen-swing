@@ -14,7 +14,7 @@ public class FormTest extends JFrame {
 
     public static void main(String[] args) {
         Swing.init(new FlatDarculaLaf());
-        Swing.openMainWindow(new FormTest(), 400, 300);
+        Swing.openMainWindow(new FormTest());
     }
 
     private static class LoginForm extends FormPanel {
@@ -35,9 +35,11 @@ public class FormTest extends JFrame {
     public FormTest() throws HeadlessException {
         setTitle("登录");
         LoginForm loginForm = new LoginForm();
-        setContentPane(new SpringPanel() {{
+        var contentPane = new SpringPanel() {{
             add(loginForm);
             getLayout().padding(this, 30, loginForm, Edge.TOP, Edge.RIGHT, Edge.BOTTOM, Edge.LEFT);
-        }});
+        }};
+        setContentPane(contentPane);
+        setMinimumSize(new Dimension(400, 260));
     }
 }

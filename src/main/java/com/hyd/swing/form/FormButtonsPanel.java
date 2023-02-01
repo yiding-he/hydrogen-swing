@@ -1,6 +1,7 @@
 package com.hyd.swing.form;
 
 import com.hyd.swing.Swing;
+import com.hyd.swing.layout.SpringLayout2.Edge;
 import com.hyd.swing.layout.SpringPanel;
 
 import javax.swing.*;
@@ -16,14 +17,13 @@ public class FormButtonsPanel extends SpringPanel {
     public void addButton(JButton button) {
         add(button);
 
-        getLayout().setTopOf(button).padding(0).toTopOf(this);
-        getLayout().setRightOf(button).padding(0).toRightOf(this);
-
         if (lastButton != null) {
-            getLayout().setRightOf(lastButton).padding(Swing.PADDING).toLeftOf(button);
+            getLayout().setRightOf(button).withOffset(-Swing.PADDING).toLeftOf(lastButton);
+        } else {
+            getLayout().align(Edge.RIGHT, this, button);
         }
 
         lastButton = button;
-        getLayout().setBottomOf(this).padding(0).toBottomOf(lastButton);
+        getLayout().setBottomOf(this).withOffset(0).toBottomOf(lastButton);
     }
 }

@@ -1,31 +1,15 @@
 package com.hyd.swing;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-import java.awt.Window.Type;
-import java.io.File;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.LookAndFeel;
-import javax.swing.SpringLayout;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import java.awt.*;
+import java.awt.Window.Type;
+import java.io.File;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class Swing {
 
@@ -66,8 +50,16 @@ public class Swing {
         }
     }
 
+    public static void openMainWindow(JFrame frame) {
+        openMainWindow(frame, 0, 0);
+    }
+
     public static void openMainWindow(JFrame frame, int width, int height) {
         openWindow(frame, width, height, true);
+    }
+
+    public static void openDialogWindow(JFrame frame) {
+        openDialogWindow(frame, 0, 0);
     }
 
     public static void openDialogWindow(JFrame frame, int width, int height) {
@@ -77,9 +69,16 @@ public class Swing {
     public static void openWindow(JFrame frame, int width, int height, boolean exitOnClose) {
         initDesktopBounds();
 
+        if (width > 0 && height > 0) {
+            frame.setSize(width, height);
+        } else {
+            frame.pack();
+            width = frame.getWidth();
+            height = frame.getHeight();
+        }
+
         int x = desktopBounds.x + (desktopBounds.width - width) / 2;
         int y = desktopBounds.y + (desktopBounds.height - height) / 2;
-        frame.setSize(width, height);
         frame.setLocation(x, y);
 
         if (exitOnClose) {

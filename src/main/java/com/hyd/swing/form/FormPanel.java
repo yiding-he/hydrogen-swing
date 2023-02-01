@@ -8,20 +8,22 @@ import javax.swing.*;
 
 public abstract class FormPanel extends SpringPanel {
 
-    private FormButtonsPanel formButtonsPanel = new FormButtonsPanel();
-
     private FormFieldsPanel formFieldsPanel = new FormFieldsPanel();
+
+    private FormButtonsPanel formButtonsPanel = new FormButtonsPanel();
 
     public FormPanel() {
         add(formFieldsPanel);
-        // add(formButtonsPanel);
+        add(formButtonsPanel);
 
         getLayout().align(Edge.TOP, this, formFieldsPanel);
         getLayout().align(Edge.LEFT, this, formFieldsPanel);
         getLayout().align(Edge.RIGHT, this, formFieldsPanel);
 
-        Swing.highlight("#882222", formFieldsPanel);
-        Swing.highlight("#AA8888", this);
+        getLayout().setTopOf(formButtonsPanel).withOffset(Swing.PADDING * 2).toBottomOf(formFieldsPanel);
+        getLayout().align(Edge.LEFT, this, formButtonsPanel);
+        getLayout().align(Edge.RIGHT, this, formButtonsPanel);
+        getLayout().align(Edge.BOTTOM, this, formButtonsPanel);
     }
 
     public void addFormField(FormField<?> formField) {
@@ -29,6 +31,6 @@ public abstract class FormPanel extends SpringPanel {
     }
 
     public void addButton(JButton button) {
-        // formButtonsPanel.addButton(button);
+        formButtonsPanel.addButton(button);
     }
 }

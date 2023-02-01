@@ -2,11 +2,9 @@ package com.hyd.swing;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.hyd.swing.dialog.Alert;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.HeadlessException;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class AlertTest extends JFrame {
 
@@ -32,7 +30,7 @@ public class AlertTest extends JFrame {
             System.out.println(alert.confirmWarning("Confirm", "You really want this?!"))));
 
         pane.add(button("alert internal info", () ->
-            Alert.alertInternalInfo(this.getContentPane(), "Alert Internal", "Something happened.")));
+            alert.internalInfo("Alert Internal", "Something happened.")));
     }
 
     private JButton button(String text, Runnable action) {

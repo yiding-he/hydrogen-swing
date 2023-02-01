@@ -16,16 +16,17 @@ public class FormFieldsPanel extends SpringPanel {
 
         add(formField);
         getLayout().align(Edge.LEFT, this, formField);
-        getLayout().align(Edge.RIGHT, this, formField);
 
         if (lastField == null) {
             getLayout().align(Edge.TOP, this, formField);
         } else {
-            getLayout().setTopOf(formField).padding(Swing.PADDING).toBottomOf(lastField);
+            getLayout().setTopOf(formField).withOffset(Swing.PADDING).toBottomOf(lastField);
         }
 
         lastField = formField;
-        getLayout().setBottomOf(this).padding(0).toBottomOf(lastField);
+        lastField.setSize(200, lastField.getHeight());
+        getLayout().align(Edge.RIGHT, this, lastField);
+        getLayout().align(Edge.BOTTOM, lastField, this);
     }
 
 }

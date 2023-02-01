@@ -55,7 +55,7 @@ public class SpringLayout2 extends SpringLayout {
                 ConstraintContext.this.e1 = e1;
             }
 
-            public ToContext padding(int padding) {
+            public ToContext withOffset(int padding) {
                 return new ToContext(padding);
             }
         }
@@ -112,9 +112,9 @@ public class SpringLayout2 extends SpringLayout {
         Component last = null;
         for (Component component : components) {
             if (last == null) {
-                setTopOf(component).padding(padding).toTopOf(container);
+                setTopOf(component).withOffset(padding).toTopOf(container);
             } else {
-                setTopOf(component).padding(padding).toBottomOf(last);
+                setTopOf(component).withOffset(padding).toBottomOf(last);
             }
             last = component;
         }

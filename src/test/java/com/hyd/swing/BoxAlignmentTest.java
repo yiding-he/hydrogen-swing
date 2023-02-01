@@ -1,7 +1,7 @@
 package com.hyd.swing;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class BoxAlignmentTest extends JFrame {
 
@@ -23,7 +23,7 @@ public class BoxAlignmentTest extends JFrame {
         box.add(label);
 
         JScrollPane scrollPane = new JScrollPane(new JTextArea("This is a text area."));
-        scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
         box.add(scrollPane);
     }
 }

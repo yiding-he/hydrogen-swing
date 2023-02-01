@@ -1,6 +1,9 @@
 package com.hyd.swing.form;
 
-import javax.swing.JPasswordField;
+import com.hyd.swing.Swing;
+import com.hyd.swing.layout.SpringLayout2.Edge;
+
+import javax.swing.*;
 
 public class PasswordFormField extends FormField<String> {
 
@@ -8,7 +11,14 @@ public class PasswordFormField extends FormField<String> {
 
     public PasswordFormField(String labelText) {
         super(labelText);
-        add(this.passwordField = new JPasswordField(), "growx");
+
+        applyLayout(layout -> {
+            add(this.passwordField = new JPasswordField());
+            layout.setTopOf(passwordField).withOffset(Swing.SMALL_PADDING).toBottomOf(label);
+            layout.align(Edge.LEFT, this, passwordField);
+            layout.align(Edge.RIGHT, passwordField, this);
+            layout.align(Edge.BOTTOM, passwordField, this);
+        });
     }
 
     public JPasswordField getPasswordField() {

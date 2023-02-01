@@ -1,11 +1,11 @@
 package com.hyd.swing.dialog;
 
-import java.awt.Component;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 public class Alert {
 
-    private Component parentComponent;
+    private final Component parentComponent;
 
     public static void alertInternalInfo(Component parent, String title, String message) {
         JOptionPane.showInternalMessageDialog(parent, message, title, JOptionPane.INFORMATION_MESSAGE);
@@ -17,6 +17,13 @@ public class Alert {
 
     private Alert(Component parentComponent) {
         this.parentComponent = parentComponent;
+    }
+
+    public void internalInfo(String title, String message) {
+        if (this.parentComponent instanceof RootPaneContainer) {
+            var rootPane = ((RootPaneContainer) this.parentComponent).getContentPane();
+            JOptionPane.showInternalMessageDialog(rootPane, message, title, JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     public void info(String title, String message) {
